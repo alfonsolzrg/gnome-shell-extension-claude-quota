@@ -128,8 +128,8 @@ GSettings schema `org.gnome.shell.extensions.claude-quota`:
 `refresh-interval` (int seconds, default 300), `credentials-path` (string, empty
 = default), `show-panel-percentages` (bool, default false — shows
 `formatPanelText`'s compact per-limit string next to the panel icon), and
-`show-pace` (bool, default true — `paceForRow` adds "expected N%" to each menu
-row and colours limits 10+ points ahead yellow, in the menu via CSS and in the
+`show-pace` (bool, default true — `paceForRow` adds "~N% at reset" (usage so far
+scaled to the whole window) to each menu row and colours limits 10+ points ahead yellow, in the menu via CSS and in the
 panel label via `formatPanelMarkup`). The API gives no window start or length,
 so `WINDOW_SECONDS` in `usageModel.js` hardcodes them per kind; a new kind gets
 no pace until it is added there. Pace is computed at render time, never stored

@@ -138,6 +138,11 @@ eq('9 points ahead -> not ahead',
 eq('behind -> not ahead',
     paceForRow({...session, percent: 15}, twoHoursIn)?.ahead, false);
 eq('pace carries expected', paceForRow(session, twoHoursIn)?.expected, 40);
+// 90% used with 3h of the 5h session left: 40% elapsed -> on track for 225%.
+eq('projects usage at reset',
+    paceForRow({...session, percent: 90}, twoHoursIn)?.projected, 225);
+eq('too early in the window -> no projection',
+    paceForRow({...session, percent: 3}, at('2026-07-08T11:05:00Z'))?.projected, null);
 eq('no window -> no pace',
     paceForRow({...session, kind: 'some_new_kind'}, twoHoursIn), null);
 eq('non-finite percent -> no pace',

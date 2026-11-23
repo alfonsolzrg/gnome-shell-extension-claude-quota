@@ -368,7 +368,8 @@ class ClaudeQuotaIndicator extends PanelMenu.Button {
         vbox.add_child(top);
         const reset = formatReset(row.resetsAt);
         vbox.add_child(new St.Label({
-            text: pace ? `${reset} · expected ${pace.expected}%` : reset,
+            text: pace?.projected != null
+                ? `${reset} · ~${pace.projected}% at reset` : reset,
             style_class: 'claude-quota-row-reset',
         }));
 

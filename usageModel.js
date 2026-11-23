@@ -152,13 +152,20 @@ export function expectedPercent(row, now = GLib.DateTime.new_now_local()) {
  * Compare a row's usage with its steady-rate expectation.
  * @param {object} row one element of parseUsage().rows
  * @param {GLib.DateTime} [now] defaults to current local time
- * @returns {{expected: number, ahead: boolean}|null} null when there is no pace
+ * `projected` is the usage at reset if the current rate continues, i.e. the
+ * usage so far scaled by the elapsed share of the window; null in the first
+ * 5% of a window, where a projection would be noise.
+ * @returns {{expected: number, ahead: boolean, projected: (number|null)}|null}
+ *   null when there is no pace
  */
 export function paceForRow(row, now = GLib.DateTime.new_now_local()) {
     const expected = expectedPercent(row, now);
     if (expected === null || !Number.isFinite(row.percent))
         return null;
-    return { expected, ahead: row.percent - expected >= PACE_MARGIN };
+    const projected = expected >= 5
+        ? Math.round(row.percent * 100 / expected)
+        : null;
+    return { expected, ahead: row.percent - expected >= PACE_MARGIN, projected };
 }
 
 /**

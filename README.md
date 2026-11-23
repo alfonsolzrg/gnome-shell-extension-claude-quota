@@ -50,7 +50,7 @@ The recommended way is a one-click install from the
 
 - **Refresh interval**: seconds between polls (default 300; also refreshes on menu open and manual refresh). On an HTTP 429 the interval backs off exponentially and resets on the next successful poll.
 - **Show percentages in top bar**: compact per-limit percentages next to the panel icon (default off).
-- **Show usage pace**: the "expected" figure under each limit and the yellow highlight, in the menu and in the top-bar percentages (default on). The weekly pace assumes round-the-clock use, so if you only work weekdays you will read as ahead in the first working days after the weekly reset.
+- **Show usage pace**: the projected usage at reset under each limit (usage so far, scaled to the whole window) and the yellow highlight, in the menu and in the top-bar percentages (default on). The weekly pace assumes round-the-clock use, so if you only work weekdays you will read as ahead in the first working days after the weekly reset.
 - **Credentials path**: override the default `~/.claude/.credentials.json`.
 
 ## Contributing
