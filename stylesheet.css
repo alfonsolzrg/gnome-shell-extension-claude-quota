@@ -52,3 +52,9 @@
 .claude-quota-footer-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* Match built-in indicators: the theme's #panel rule adds 6px padding that
+   only .panel-status-indicators-box resets, so reset it here with an id selector. */
+#panel .panel-button .claude-quota-panel-box > .system-status-icon {
+    padding: 0;
+}
